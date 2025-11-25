@@ -11,7 +11,7 @@ export default function App() {
   const hasExecutedEscappValidation = useRef(false);
 
   const [loading, setLoading] = useState(true);
-  const [fail, setFail] = useState(false);
+  const [result, setResult] = useState({"success": undefined, "message": undefined});
 
   useEffect(() => {
     //Init Escapp client
@@ -89,6 +89,39 @@ export default function App() {
     //Init internacionalization module
     I18n.init(_appSettings);
 
+    if(typeof _appSettings.delay === "number"){
+      _appSettings.delayNumber = _appSettings.delay;
+    } else {
+      _appSettings.delayNumber = parseInt(_appSettings.delay);
+    }
+
+    if(typeof _appSettings.fontSize === "number"){
+      _appSettings.fontSizeNumber = _appSettings.fontSize;
+    } else {
+      _appSettings.fontSizeNumber = parseInt(_appSettings.fontSize);
+    }
+
+    if(typeof _appSettings.autoWidth === "boolean"){
+      _appSettings.autoWidthBoolean = _appSettings.autoWidth;
+    } else {
+      _appSettings.autoWidthBoolean = (_appSettings.autoWidth === "true");
+    }
+    
+    if(typeof _appSettings.message === "undefined"){
+      _appSettings.message = I18n.getTrans("i.message");
+    }
+
+    if((typeof _appSettings.backgroundImg === "string")&&(_appSettings.backgroundImg.trim() !== "")){
+      _appSettings.background = "url(" + _appSettings.backgroundImg + ") no-repeat";
+      _appSettings.backgroundSize = "100% 100%";
+    }
+
+    if(typeof _appSettings.fontColor === "string"){
+      _appSettings.fontColorProperty = _appSettings.fontColor + " !important";
+    } else {
+      _appSettings.fontColorProperty = "";
+    }
+
     //Change HTTP protocol to HTTPs in URLs if necessary
     _appSettings = Utils.checkUrlProtocols(_appSettings);
 
@@ -105,16 +138,15 @@ export default function App() {
       Utils.log("Check solution Escapp response", success, erState);
       if (success) {
         try {
-          setFail(false);
-
+          setResult({"success": true, "message": erState.msg});
           setTimeout(() => {
             submitPuzzleSolution(_solution);
-          }, 2000);
+          }, appSettings.delayNumber);
         } catch (e) {
           Utils.log("Error in checkNextPuzzle", e);
         }
       } else {
-        setFail(true);
+        setResult({"success": false, "message": erState.msg});
       }
     });
   }
@@ -132,9 +164,16 @@ export default function App() {
       className={`${
         appSettings !== null && typeof appSettings.skin === "string" ? appSettings.skin.toLowerCase() : ""
       }`}
+      {...(appSettings !== null && typeof appSettings.background === "string" && typeof appSettings.backgroundSize === "string" ? 
+        { style: {
+          background: appSettings.background,
+          backgroundSize: appSettings.backgroundSize,
+        }
+      }
+      : {})}
     >
-      <div className={`main-background ${fail ? "fail" : ""}`}>
-        {!loading && <MainScreen config={appSettings} sendInput={checkResult} />}
+      <div className={`main-background ${(result && result.success === true) ? "solved" : ""}`}>
+        {!loading && <MainScreen config={appSettings} sendInput={checkResult} result={result} />}
       </div>
     </div>
   );

@@ -1,4 +1,9 @@
 html,
+body {
+  background-color: #2a2a52;
+}
+
+html,
 body,
 div#root,
 div.screen_wrapper {
@@ -11,9 +16,8 @@ div.screen_wrapper {
   overflow: hidden;
 }
 
-html,
-body {
-  background: transparent;
+#global_wrapper {
+  background-color: #2a2a52;
 }
 
 .main-background {

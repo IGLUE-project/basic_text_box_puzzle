@@ -1,16 +1,16 @@
 export const DEFAULT_APP_SETTINGS = {
   skin: "STANDARD",
-  backgroundImg: "",
-  message: "introduce el valor correcto",
-  errorMessage: "el valor es incorrecto",
-  placeholder: "Custom placeholder...",
-  autoWidth: false,
-  width: 50,
-  fontSize: 20,
-  fontColor: "#000",
+  backgroundImg: undefined,
+  message: undefined,
+  placeholder: "",
+  autoWidth: "FALSE",
+  width: "50",
+  fontSize: "20",
+  fontColor: "#ffff",
   xposition: "CENTER",
   yposition: "CENTER",
-  opacity: 1.0,
+  opacity: "1.0",
+  delay: "2000",
 };
 
 export const XPOSITION = {

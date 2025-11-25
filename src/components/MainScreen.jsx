@@ -3,14 +3,14 @@ import "./../assets/scss/MainScreen.scss";
 import { GlobalContext } from "./GlobalContext";
 import { XPOSITION, YPOSITION } from "../constants/constants";
 
-export default function MainScreen({ config, sendInput }) {
+export default function MainScreen({ config, sendInput, result }) {
   const { I18n } = useContext(GlobalContext);
   const inputRef = useRef(null);
   const [xposition, setXposition] = useState("CENTER");
   const [yposition, setYposition] = useState("CENTER");
   useEffect(() => {
     const input = inputRef.current;
-    if (!input || !config.autoWidth) return;
+    if (!input || !config.autoWidthBoolean) return;
 
     const handleInput = () => {
       const length = Math.max(input.value.length, config.placeholder.length);
@@ -62,13 +62,36 @@ export default function MainScreen({ config, sendInput }) {
     }
   }, [config]);
 
+
+  let solved = false;
+  let resultMessageExtraClass = "";
+  let messageToShow = undefined;
+  if(result){
+    if(typeof result.success === "boolean"){
+      if((typeof result.message === "string")&&(result.message.trim()!=="")){
+        messageToShow = result.message;
+      } else {
+        if(result.success === true){
+          messageToShow = I18n.getTrans("i.successMessage");
+        } else {
+          messageToShow = I18n.getTrans("i.errorMessage");
+        }
+      }
+      if(result.success === true){
+        solved = true;
+        resultMessageExtraClass = "successMessage";
+      } else {
+        resultMessageExtraClass = "errorMessage";
+      }
+    }
+  }
+
   return (
     <div
       id="MainScreen"
       className="screen_wrapper"
       style={{
-        backgroundImage: `url(${config.backgroundImg})`,
-        color: config.fontColor,
+        color: config.fontColorProperty,
         justifyContent: xposition,
         alignItems: yposition,
         opacity: config.opacity,
@@ -77,19 +100,18 @@ export default function MainScreen({ config, sendInput }) {
       <div
         className="content"
         style={{
-          width: config.autoWidth ? "auto" : `${config.width}%`,
+          width: config.autoWidthBoolean ? "auto" : `${config.width}%`,
           minWidth: "375px",
         }}
       >
         <p
           className="info"
           style={{
-            fontSize: config.fontSize,
+            fontSize: config.fontSizeNumber,
           }}
         >
           {config.message}
         </p>
-
         <div className="input-container">
           <input
             ref={inputRef}
@@ -98,23 +120,23 @@ export default function MainScreen({ config, sendInput }) {
             type="text"
             onKeyDown={handleKeyDown}
             style={{
-              fontSize: config.fontSize,
-              width: config.autoWidth ? "auto" : `100%`,
+              fontSize: config.fontSizeNumber,
+              width: config.autoWidthBoolean ? "auto" : `100%`,
             }}
-            placeholder={config.placeholder}
+            disabled={solved}
+            placeholder={solved ? "" : config.placeholder}
           />
-          <button onClick={handleSend} style={{ fontSize: config.fontSize }}>
+          <button onClick={handleSend} style={{ fontSize: config.fontSizeNumber }} disabled={solved}>
             {I18n.getTrans("i.send")}
           </button>
         </div>
-
         <p
-          className="error"
+          className={`resultMessage ${resultMessageExtraClass}`}
           style={{
-            fontSize: config.fontSize,
+            fontSize: config.fontSizeNumber,
           }}
         >
-          {config.errorMessage}
+          {typeof messageToShow === "string" ? messageToShow : ""}
         </p>
       </div>
     </div>

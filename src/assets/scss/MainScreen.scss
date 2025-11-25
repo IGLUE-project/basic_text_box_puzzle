@@ -12,7 +12,9 @@ div#MainScreen {
     border-radius: 15px;
     transition: color 0.3s ease;
     margin: 20px;
-
+    p.info {
+      color: #fff;
+    }
     // 🔹 cuando el input dentro de este contenedor está en foco,
     // el texto del <p> se ilumina igual que el input
     &:has(input:focus) p.info {
@@ -57,16 +59,16 @@ div#MainScreen {
       cursor: pointer;
       transition: all 0.2s ease;
 
-      &:hover {
+      &:not(:disabled):hover {
         border-color: #fff;
         color: #fff;
       }
 
-      &:active {
+      &:not(:disabled):active {
         transform: scale(0.97);
       }
 
-      &:focus {
+      &:not(:disabled):focus {
         outline: none;
         border-color: #fff;
         color: #fff;
@@ -74,14 +76,24 @@ div#MainScreen {
     }
   }
 
-  p.error {
-    visibility: hidden;
-    color: #ff0000ba;
+  p.resultMessage {
+    visibility: visible;
+    min-height: 50px;
+  }
+
+  p.resultMessage.errorMessage {
+    color: rgb(235 56 56);
+  }
+
+  p.resultMessage.successMessage {
+    color: rgb(73 189 25);
   }
 }
 
-.fail {
-  p.error {
-    visibility: visible !important;
+div.main-background {
+  input:disabled {
+  }
+  button:disabled {
+    cursor: default !important;
   }
 }
