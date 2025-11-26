@@ -7,6 +7,8 @@ export const DEFAULT_APP_SETTINGS = {
   width: "50",
   fontSize: "20",
   fontColor: "#ffffffff",
+  fontColorErrorMessage: "#EB3838",
+  fontColorSuccessMessage: "#49BD19",
   xposition: "CENTER",
   yposition: "CENTER",
   opacity: "1.0",

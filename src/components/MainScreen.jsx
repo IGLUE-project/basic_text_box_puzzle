@@ -64,6 +64,7 @@ export default function MainScreen({ config, sendInput, result }) {
 
   let solved = false;
   let resultMessageExtraClass = "";
+  let resultMessageColor = config.fontColor;
   let messageToShow = undefined;
   if (result) {
     if (typeof result.success === "boolean") {
@@ -79,8 +80,10 @@ export default function MainScreen({ config, sendInput, result }) {
       if (result.success === true) {
         solved = true;
         resultMessageExtraClass = "successMessage";
+        resultMessageColor = config.fontColorSuccessMessage;
       } else {
         resultMessageExtraClass = "errorMessage";
+        resultMessageColor = config.fontColorErrorMessage;
       }
     }
   }
@@ -138,6 +141,7 @@ export default function MainScreen({ config, sendInput, result }) {
           className={`resultMessage ${resultMessageExtraClass}`}
           style={{
             fontSize: config.fontSizeNumber,
+            color: resultMessageColor,
           }}
         >
           {typeof messageToShow === "string" ? messageToShow : ""}
