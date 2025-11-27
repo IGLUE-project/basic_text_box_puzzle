@@ -95,7 +95,7 @@ export default function MainScreen({ config, sendInput, result }) {
         color: config.fontColor,
         justifyContent: xposition,
         alignItems: yposition,
-        opacity: config.opacity,
+        opacity: config.opacityNumber,
       }}
     >
       <div

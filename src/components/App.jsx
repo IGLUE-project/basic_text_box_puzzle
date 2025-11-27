@@ -95,6 +95,13 @@ export default function App() {
       _appSettings.delayNumber = parseInt(_appSettings.delay);
     }
 
+    if (typeof _appSettings.opacity === "number") {
+      _appSettings.opacityNumber = _appSettings.opacity;
+    } else {
+      _appSettings.opacityNumber = parseInt(_appSettings.opacity);
+    }
+    _appSettings.opacityNumber = _appSettings.opacityNumber/100;
+
     //Font size
     if (typeof _appSettings.fontSize === "number") {
       _appSettings.fontSizeNumber = _appSettings.fontSize;

@@ -15,7 +15,7 @@ export let ESCAPP_APP_SETTINGS = {
   //fontColorSuccessMessage: "rgb(73, 189, 25);",
   //xposition: "RIGHT", //This value can be "LEFT", "CENTER" or "RIGHT"
   //yposition: "BOTTOM", //This value can be "TOP", "CENTER" or "BOTTOM"
-  //opacity: "1", // from 0 to 1
+  //opacity: "100", // from 0 to 100
   //delay: "3000",
 
   //Settings that will be automatically specified by the Escapp server

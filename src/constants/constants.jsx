@@ -14,7 +14,7 @@ export const DEFAULT_APP_SETTINGS = {
   fontColorSuccessMessage: "#49BD19",
   xposition: "CENTER",
   yposition: "CENTER",
-  opacity: "1.0",
+  opacity: "100",
   delay: "2000",
 };
 
