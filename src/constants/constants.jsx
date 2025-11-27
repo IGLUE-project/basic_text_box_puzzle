@@ -2,10 +2,13 @@ export const DEFAULT_APP_SETTINGS = {
   skin: "STANDARD",
   backgroundImg: undefined,
   message: undefined,
+  buttonLabel: undefined,
   placeholder: "",
   autoWidth: "FALSE",
-  width: "50",
-  fontSize: "20",
+  width: "66",
+  fontSize: "5", //vmin
+  fontSizeMin: "16", //px
+  fontSizeMax: "100", //px
   fontColor: "#ffffffff",
   fontColorErrorMessage: "#EB3838",
   fontColorSuccessMessage: "#49BD19",

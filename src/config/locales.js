@@ -13,5 +13,8 @@ export let LOCALES = {
   },
   sr: {
     "i.send": "Send",
+    "i.message": "Enter the solution",
+    "i.errorMessage": "The solution is incorrect",
+    "i.successMessage": "The solution is correct",
   },
 };

@@ -108,7 +108,7 @@ export default function MainScreen({ config, sendInput, result }) {
         <p
           className="info"
           style={{
-            fontSize: config.fontSizeNumber,
+            fontSize: config.fontSizeProp,
             color: config.fontColor,
           }}
         >
@@ -123,7 +123,7 @@ export default function MainScreen({ config, sendInput, result }) {
             onKeyDown={handleKeyDown}
             style={{
               color: config.fontColor,
-              fontSize: config.fontSizeNumber,
+              fontSize: config.fontSizeProp,
               width: config.autoWidthBoolean ? "auto" : `100%`,
             }}
             disabled={solved}
@@ -131,16 +131,16 @@ export default function MainScreen({ config, sendInput, result }) {
           />
           <button
             onClick={handleSend}
-            style={{ color: config.fontColor, fontSize: config.fontSizeNumber }}
+            style={{ color: config.fontColor, fontSize: config.fontSizeProp }}
             disabled={solved}
           >
-            {I18n.getTrans("i.send")}
+            {config.buttonLabel}
           </button>
         </div>
         <p
           className={`resultMessage ${resultMessageExtraClass}`}
           style={{
-            fontSize: config.fontSizeNumber,
+            fontSize: config.fontSizeProp,
             color: resultMessageColor,
           }}
         >

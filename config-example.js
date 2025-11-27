@@ -3,16 +3,18 @@
 export let ESCAPP_APP_SETTINGS = {
   //Settings that can be specified by the authors
   //backgroundImg: "", //background can be "NONE" or a URL.
-  message: "Enter the solution",
+  //message: "Enter the solution",
+  //buttonLabel: "Send",
   //placeholder: "Custom placeholder",
-  //autoWidth: "false",
-  //width: "30",
-  //fontSize: "20",
+  //width: "90",
+  //fontSize: "5",  //in vmin
+  //fontSizeMin: "16",  //in px
+  //fontSizeMax: "100", //in px
   //fontColor: "#ffffffff",
   //fontColorErrorMessage: "rgb(235, 56, 56);",
   //fontColorSuccessMessage: "rgb(73, 189, 25);",
-  //xposition: "RIGHT", //LEFT, CENTER, RIGHT
-  //yposition: "BOTTOM", //CENTER, TOP, BOTTOM
+  //xposition: "RIGHT", //This value can be "LEFT", "CENTER" or "RIGHT"
+  //yposition: "BOTTOM", //This value can be "TOP", "CENTER" or "BOTTOM"
   //opacity: "1", // from 0 to 1
   //delay: "3000",
 

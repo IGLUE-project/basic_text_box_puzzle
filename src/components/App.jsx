@@ -95,11 +95,23 @@ export default function App() {
       _appSettings.delayNumber = parseInt(_appSettings.delay);
     }
 
+    //Font size
     if (typeof _appSettings.fontSize === "number") {
       _appSettings.fontSizeNumber = _appSettings.fontSize;
     } else {
       _appSettings.fontSizeNumber = parseInt(_appSettings.fontSize);
     }
+    if (typeof _appSettings.fontSizeMin === "number") {
+      _appSettings.fontSizeMinNumber = _appSettings.fontSizeMin;
+    } else {
+      _appSettings.fontSizeMinNumber = parseInt(_appSettings.fontSizeMin);
+    }
+    if (typeof _appSettings.fontSizeMax === "number") {
+      _appSettings.fontSizeMaxNumber = _appSettings.fontSizeMax;
+    } else {
+      _appSettings.fontSizeMaxNumber = parseInt(_appSettings.fontSizeMax);
+    }
+    _appSettings.fontSizeProp = `clamp(${_appSettings.fontSizeMinNumber}px, ${_appSettings.fontSize}vmin, ${_appSettings.fontSizeMaxNumber}px)`;
 
     if (typeof _appSettings.autoWidth === "boolean") {
       _appSettings.autoWidthBoolean = _appSettings.autoWidth;
@@ -107,8 +119,12 @@ export default function App() {
       _appSettings.autoWidthBoolean = _appSettings.autoWidth === "true";
     }
 
-    if (typeof _appSettings.message === "undefined") {
+    if ((typeof _appSettings.message !== "string")||(_appSettings.message.trim()==="")) {
       _appSettings.message = I18n.getTrans("i.message");
+    }
+
+    if ((typeof _appSettings.buttonLabel !== "string")||(_appSettings.buttonLabel.trim()==="")) {
+      _appSettings.buttonLabel = I18n.getTrans("i.send");
     }
 
     if (typeof _appSettings.backgroundImg === "string" && _appSettings.backgroundImg.trim() !== "") {
